@@ -1,0 +1,30 @@
+version: '2'
+services:
+  proxy:
+    build:
+      context: .
+    container_name: proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - adm
+      - api
+      - web
+  adm:
+    build:
+      context: ./projects/adm
+    container_name: adm
+    ports:
+      - "8081:80"
+  api:
+    build:
+      context: ./projects/api
+    container_name: api
+    ports:
+      - "3000:80"
+  web:
+    build:
+      context: ./projects/web
+    container_name: web
+    ports:
+      - "8080:80"
